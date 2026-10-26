@@ -152,7 +152,7 @@
   <div class="beta">
     <b>먼저 써 보실래요?</b>
     <p>출시 전 베타 테스터를 모집하고 있어요. 써 보고 솔직한 의견을 들려주세요.</p>
-    <a id="betaLink" href="#">베타 신청하기 →</a>
+    <a id="betaLink" href="https://forms.gle/cpKPBcwCxcVed7Gk7" target="_blank" rel="noopener">베타 신청하기 →</a>
   </div>
 
   <footer>
@@ -169,7 +169,7 @@
   const LINKS = {
     android: 'https://play.google.com/store/apps/details?id=com.hyosang.tripcuts',
     ios: '',       // App Store 출시 후
-    beta: '',      // 베타 신청 폼 주소
+    beta: 'https://forms.gle/cpKPBcwCxcVed7Gk7',      // 베타 신청 폼 주소
   };
   if (LINKS.android) document.getElementById('android').href = LINKS.android;
   if (LINKS.ios) { const a = document.getElementById('ios'); a.href = LINKS.ios; a.querySelector('small').remove(); }
