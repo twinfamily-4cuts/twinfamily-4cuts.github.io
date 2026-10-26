@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>트립네컷 — 여행 다녀와서 찍은 사진 수백 장, 열면 바로 네컷으로</title>
+<meta name="description" content="고르지 않아도 돼요. 여행마다 가장 빛나는 순간을 알아서 네컷으로. 원본 사진은 폰 밖으로 나가지 않아요.">
+<meta property="og:title" content="트립네컷 — 사진 수백 장, 열면 바로 네컷으로">
+<meta property="og:description" content="고르지 않아도 돼요. 광고 없이, 결제 없이도 충분해요.">
+<meta property="og:image" content="https://twinfamily-4cuts.github.io/tripcuts/img/og.png">
+<meta property="og:url" content="https://twinfamily-4cuts.github.io/tripcuts/">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/icon.png">
+<style>
+  :root { --ink: #16181B; --sub: #8E9196; --line: #ECECEC; --soft: #F5F5F6; --pink: #F0507A; --violet: #8B5CF6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: var(--ink); background: #fff; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px 120px; }
+  header { display: flex; align-items: center; gap: 10px; padding: 18px 0 6px; }
+  header img { width: 34px; height: 34px; border-radius: 9px; }
+  header b { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; }
+  section { padding-top: 44px; }
+  .eyebrow { font-size: 13px; font-weight: 800; color: var(--pink); letter-spacing: .5px; }
+  h1 { font-size: 30px; line-height: 1.32; font-weight: 900; letter-spacing: -1px; margin-top: 10px; }
+  h2 { font-size: 24px; line-height: 1.35; font-weight: 900; letter-spacing: -0.8px; margin-top: 8px; }
+  .lead { color: var(--sub); font-size: 15.5px; line-height: 1.6; margin-top: 12px; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .pills span { font-size: 12.5px; font-weight: 700; padding: 7px 11px; border-radius: 999px; background: var(--soft); }
+  .cta { display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; font-weight: 800; font-size: 15.5px; text-decoration: none; margin-top: 18px; }
+  .cta.pink { background: var(--pink); color: #fff; box-shadow: 0 10px 24px rgba(240,80,122,.28); }
+  .cta.line { border: 1.5px solid var(--line); color: var(--ink); margin-top: 10px; }
+  .cta small { font-weight: 600; font-size: 12px; color: var(--sub); margin-left: 6px; }
+  /* 문제: 사진 더미 */
+  .pile { position: relative; height: 210px; margin-top: 22px; background: var(--soft); border-radius: 22px; overflow: hidden; }
+  .pile img { position: absolute; width: 74px; aspect-ratio: 3/4; object-fit: cover; border-radius: 6px; box-shadow: 0 6px 14px rgba(0,0,0,.18); border: 3px solid #fff; }
+  .pile .badge { position: absolute; left: 14px; bottom: 14px; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 800; padding: 8px 12px; border-radius: 999px; }
+  /* 해결: 네컷 카드 */
+  .cards { position: relative; height: 320px; margin-top: 22px; }
+  .card { position: absolute; width: min(190px, 45%); background: #fff; border-radius: 12px; padding: 7px 7px 0; box-shadow: 0 16px 34px rgba(0,0,0,.16); }
+  .card .g { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .card .g img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; display: block; }
+  .card .cap { text-align: center; padding: 8px 0 9px; font-size: 11px; font-weight: 800; }
+  .card .cap small { display: block; font-weight: 500; color: var(--sub); font-size: 9px; letter-spacing: 1.5px; margin-top: 2px; }
+  .c1 { left: 6%; top: 18px; transform: rotate(-7deg); }
+  .c2 { right: 4%; top: 0; transform: rotate(6deg); }
+  /* 혜택: 단톡방 */
+  .chat { margin-top: 22px; background: #B2C7DA; border-radius: 22px; padding: 16px; }
+  .chat .room { font-size: 12px; font-weight: 800; color: #3B4A58; margin-bottom: 10px; }
+  .chat .me { display: flex; justify-content: flex-end; }
+  .chat .msg { display: flex; gap: 8px; margin-top: 10px; align-items: flex-start; }
+  .chat .msg i { width: 30px; height: 30px; border-radius: 11px; flex-shrink: 0; }
+  .chat .msg span { background: #fff; padding: 8px 11px; border-radius: 4px 14px 14px 14px; font-size: 13.5px; }
+  .steps { margin-top: 18px; display: grid; gap: 10px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--soft); border-radius: 18px; padding: 15px 16px; }
+  .step .n { width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; font-size: 12.5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step b { display: block; font-size: 15px; }
+  .step span { display: block; font-size: 13.5px; color: var(--sub); margin-top: 3px; line-height: 1.5; }
+  .for { margin-top: 16px; display: grid; gap: 8px; }
+  .for div { display: flex; gap: 10px; align-items: center; font-size: 15px; padding: 13px 15px; border: 1.5px solid var(--line); border-radius: 16px; }
+  .for div em { font-style: normal; font-size: 20px; }
+  .faq { margin-top: 16px; display: grid; gap: 10px; }
+  .faq details { background: var(--soft); border-radius: 16px; padding: 14px 16px; }
+  .faq summary { font-weight: 800; font-size: 15px; cursor: pointer; list-style: none; }
+  .faq summary::after { content: '＋'; float: right; color: var(--sub); }
+  .faq details[open] summary::after { content: '－'; }
+  .faq p { font-size: 14px; color: #555; line-height: 1.6; margin-top: 8px; }
+  .pro { margin-top: 16px; border-radius: 20px; padding: 18px; background: #F6F2FF; }
+  .pro b { font-size: 16px; }
+  .pro p { font-size: 13.5px; color: #5B4E7A; line-height: 1.6; margin-top: 6px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); margin-right: 6px; vertical-align: 1px; }
+  .beta { margin-top: 26px; background: #FFF1F5; border-radius: 20px; padding: 18px; }
+  .beta b { font-size: 16px; display: block; }
+  .beta p { font-size: 13.5px; color: #6B5A60; margin: 5px 0 12px; line-height: 1.5; }
+  .beta a { display: inline-block; background: #fff; color: var(--pink); border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 14px; text-decoration: none; }
+  footer { margin-top: 36px; font-size: 12px; color: var(--sub); text-align: center; line-height: 1.8; }
+  footer a { color: var(--sub); }
+  .share { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 22px calc(14px + env(safe-area-inset-bottom)); background: linear-gradient(to top, #fff 70%, rgba(255,255,255,0)); }
+  .share button { display: block; width: 100%; max-width: 436px; margin: 0 auto; height: 56px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 800; font-size: 16px; font-family: inherit; cursor: pointer; }
+  .toast { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); background: rgba(22,24,27,.92); color: #fff; font-size: 13.5px; padding: 11px 16px; border-radius: 12px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.on { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="img/icon.png" alt=""><b>트립네컷</b></header>
+
+  <!-- 핵심 헤드라인 + 즉시 반박 제거 -->
+  <section style="padding-top: 26px">
+    <h1>여행 다녀와서 찍은 사진 수백 장,<br>열면 바로 네컷으로</h1>
+    <p class="lead">고르지 않아도 돼요. 여행마다 가장 빛나는 순간을 앱이 알아서 골라 드려요.</p>
+    <div class="pills"><span>🔒 사진은 폰 밖으로 안 나가요</span><span>광고 없음</span><span>결제 없이도 충분해요</span></div>
+    <a class="cta pink" id="android" href="#">무료로 시작하기</a>
+    <a class="cta line" id="ios" href="#">App Store<small>곧 출시</small></a>
+  </section>
+
+  <!-- 온보딩 ① 문제: 잃기 싫다 -->
+  <section>
+    <div class="eyebrow">이런 적 있죠?</div>
+    <h2>여행은 끝났는데<br>사진은 폴더에 그대로</h2>
+    <p class="lead">고르다 지쳐 결국 안 올리고, 그렇게 그 여행도 같이 흐려져요.</p>
+    <div class="pile" id="pile"><div class="badge">📷 사진 999+장 미정리</div></div>
+  </section>
+
+  <!-- 온보딩 ② 해결: 귀찮음 제거 -->
+  <section>
+    <div class="eyebrow">트립네컷이 대신 해요</div>
+    <h2>열면 바로,<br>여행이 네컷으로</h2>
+    <p class="lead">날짜와 장소로 여행을 찾고, 흐린 사진·연사는 빼고, 얼굴은 안 잘리게. 마음에 안 들면 다시 뽑기 무제한.</p>
+    <div class="cards">
+      <div class="card c1"><div class="g"><img src="img/friends.png" alt=""><img src="img/ramen.png" alt=""><img src="img/sunset.png" alt=""><img src="img/parasol.png" alt=""></div><div class="cap">제주 · 3박 4일<small>2026.10.09 – 10.12</small></div></div>
+      <div class="card c2"><div class="g"><img src="img/lake.png" alt=""><img src="img/road.png" alt=""><img src="img/city.png" alt=""><img src="img/latte.png" alt=""></div><div class="cap">뉴질랜드 · 한 달<small>2026.01.21 – 02.20</small></div></div>
+    </div>
+  </section>
+
+  <!-- 온보딩 ③ 혜택: 인정 욕구 -->
+  <section>
+    <div class="eyebrow">그리고</div>
+    <h2>여기저기 공유하고<br>추억 남겨봐요</h2>
+    <p class="lead">카톡·인스타 피드·스토리에 맞는 크기로 알아서. 탭 한 번이면 끝.</p>
+    <div class="chat">
+      <div class="room">💬 대학 동기 단톡방</div>
+      <div class="me"><div class="card" style="position:static;width:130px;transform:none;border:4px solid #FEE500"><div class="g"><img src="img/friends.png" alt=""><img src="img/ramen.png" alt=""><img src="img/sunset.png" alt=""><img src="img/parasol.png" alt=""></div><div class="cap">제주 · 3박 4일</div></div></div>
+      <div class="msg"><i style="background:#F6C1B5"></i><span>헐 제주 다녀왔구나 진짜 부럽다 😭</span></div>
+      <div class="msg"><i style="background:#BCD4F1"></i><span>대박 멋지다… 나도 가고 싶다 ✈️</span></div>
+    </div>
+  </section>
+
+  <!-- 이런 분께 추천 -->
+  <section>
+    <div class="eyebrow">이런 분께 추천해요</div>
+    <div class="for">
+      <div><em>✈️</em>여행은 자주 가는데 사진 정리는 늘 미루는 분</div>
+      <div><em>🏝️</em>한달살기·장기 여행으로 사진이 수천 장인 분</div>
+      <div><em>👨‍👩‍👧</em>가족 여행 사진을 단톡방에 예쁘게 남기고 싶은 분</div>
+      <div><em>📱</em>인스타에 올리고 싶은데 고르고 편집하는 게 귀찮은 분</div>
+    </div>
+  </section>
+
+  <!-- 반박 제거 FAQ -->
+  <section>
+    <div class="eyebrow">궁금한 것</div>
+    <div class="faq">
+      <details open><summary>제 사진이 어디로 올라가나요?</summary><p>아무 데도 안 올라가요. 사진 분석은 모두 내 폰 안에서만 하고, 서버로 보내지 않아요. (안드로이드 앱은 인터넷 권한 자체가 없어요)</p></details>
+      <details><summary>정말 무료예요?</summary><p>네. 여행을 찾아 네컷으로 만들고, 다시 뽑고, 저장하고 공유하는 건 평생 무료예요. 광고도 없어요.</p></details>
+      <details><summary>폰에 따로 설정할 게 있나요?</summary><p>없어요. 설치하고 사진 접근만 허용하면 끝. 안드로이드 8.0 이상, iOS 17 이상에서 돼요.</p></details>
+      <details><summary>사진이 많으면 오래 걸리지 않나요?</summary><p>최근 여행부터 먼저 만들어 보여 드려요. 나머지는 뒤에서 조용히 정리해요.</p></details>
+    </div>
+    <div class="pro"><b><span class="dot"></span>더 욕심나면 Pro</b>
+      <p>내 얼굴 제일 잘 나온 사진으로 바꾸기, 꼭 보여 주고 싶은 장소 넣기, 긴 여행은 6·9컷, 로고 없이 고화질. 무료로 먼저 써 볼 수 있어요.</p></div>
+  </section>
+
+  <div class="beta">
+    <b>먼저 써 보실래요?</b>
+    <p>출시 전 베타 테스터를 모집하고 있어요. 써 보고 솔직한 의견을 들려주세요.</p>
+    <a id="betaLink" href="#">베타 신청하기 →</a>
+  </div>
+
+  <footer>
+    회사 다니며 밤에 조금씩 만드는 여행 기록 앱<br>
+    <a href="privacy.html">개인정보 처리방침</a> · <a href="terms.html">이용약관</a> · 문의 <a href="mailto:twincouplefamily@gmail.com">twincouplefamily@gmail.com</a>
+  </footer>
+</div>
+
+<div class="share"><button id="shareBtn">친구에게 공유하기</button></div>
+<div class="toast" id="toast">주소를 복사했어요</div>
+
+<script>
+  // 스토어·베타 주소는 출시 단계에 맞춰 여기만 바꾼다
+  const LINKS = {
+    android: 'https://play.google.com/store/apps/details?id=com.hyosang.tripcuts',
+    ios: '',       // App Store 출시 후
+    beta: '',      // 베타 신청 폼 주소
+  };
+  if (LINKS.android) document.getElementById('android').href = LINKS.android;
+  if (LINKS.ios) { const a = document.getElementById('ios'); a.href = LINKS.ios; a.querySelector('small').remove(); }
+  if (LINKS.beta) document.getElementById('betaLink').href = LINKS.beta;
+
+  // 문제 장면: 흩어진 사진 더미
+  const pile = document.getElementById('pile');
+  const imgs = ['sunset', 'ramen', 'friends', 'parasol', 'lake', 'road', 'city', 'latte', 'sunset', 'lake', 'ramen', 'road'];
+  imgs.forEach((n, i) => {
+    const el = document.createElement('img');
+    el.src = `img/${n}.png`;
+    el.style.left = `${(i * 37 + 8) % 86}%`;
+    el.style.top = `${(i * 53 + 6) % 62}%`;
+    el.style.transform = `rotate(${((i * 29) % 40) - 20}deg)`;
+    pile.insertBefore(el, pile.firstChild);
+  });
+
+  const toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1800); };
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    const data = { title: '트립네컷', text: '여행 사진 수백 장, 열면 바로 네컷으로 ✈️ #트립네컷', url: location.href };
+    if (navigator.share) { try { await navigator.share(data); } catch (_) {} }
+    else { try { await navigator.clipboard.writeText(location.href); toast('주소를 복사했어요'); } catch (_) { toast(location.href); } }
+  });
+</script>
+</body>
+</html>
