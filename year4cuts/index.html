@@ -14,135 +14,62 @@
 <style>
   :root { --ink: #16181B; --sub: #8E9196; --line: #ECECEC; --soft: #F5F5F6; --pink: #F0507A; --violet: #8B5CF6; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
   body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: var(--ink); background: #fff; }
-  .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px 120px; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px 40px; }
   header { display: flex; align-items: center; gap: 10px; padding: 18px 0 6px; }
   header img { width: 34px; height: 34px; border-radius: 9px; }
   header b { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; }
-  section { padding-top: 44px; }
-  .eyebrow { font-size: 13px; font-weight: 800; color: var(--pink); letter-spacing: .5px; }
-  h1 { font-size: 30px; line-height: 1.32; font-weight: 900; letter-spacing: -1px; margin-top: 10px; }
-  h2 { font-size: 24px; line-height: 1.35; font-weight: 900; letter-spacing: -0.8px; margin-top: 8px; }
-  .lead { color: var(--sub); font-size: 15.5px; line-height: 1.6; margin-top: 12px; }
-  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  h1 { font-size: 30px; line-height: 1.32; font-weight: 900; letter-spacing: -1px; margin-top: 18px; }
+  .lead { color: var(--sub); font-size: 15.5px; line-height: 1.6; margin-top: 10px; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
   .pills span { font-size: 12.5px; font-weight: 700; padding: 7px 11px; border-radius: 999px; background: var(--soft); }
-  .cta { display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; font-weight: 800; font-size: 15.5px; text-decoration: none; margin-top: 18px; }
+  .cta { display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; font-weight: 800; font-size: 15.5px; text-decoration: none; margin-top: 16px; }
   .cta.pink { background: var(--pink); color: #fff; box-shadow: 0 10px 24px rgba(240,80,122,.28); }
   .cta.line { border: 1.5px solid var(--line); color: var(--ink); margin-top: 10px; }
   .cta small { font-weight: 600; font-size: 12px; color: var(--sub); margin-left: 6px; }
-  /* 문제: 사진 더미 */
-  .pile { position: relative; height: 210px; margin-top: 22px; background: var(--soft); border-radius: 22px; overflow: hidden; }
-  .pile img { position: absolute; width: 74px; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; box-shadow: 0 6px 14px rgba(0,0,0,.18); border: 3px solid #fff; }
-  .pile .badge { position: absolute; left: 14px; bottom: 14px; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 800; padding: 8px 12px; border-radius: 999px; }
-  /* 스토어 데모 스크린샷 */
-  .shot { display: block; width: 100%; height: auto; margin-top: 22px; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 16px 34px rgba(0,0,0,.10); }
-  /* Pro 가격 */
-  .price { margin-top: 16px; background: #F6F2FF; border-radius: 18px; padding: 14px 16px; text-align: center; }
-  .price b { font-size: 15px; color: #3D2E63; }
-  .price span { display: block; margin-top: 4px; font-size: 12.5px; color: #5B4E7A; }
-  .for { margin-top: 16px; display: grid; gap: 8px; }
-  .for div { display: flex; gap: 10px; align-items: center; font-size: 15px; padding: 13px 15px; border: 1.5px solid var(--line); border-radius: 16px; }
-  .for div em { font-style: normal; font-size: 20px; }
-  .faq { margin-top: 16px; display: grid; gap: 10px; }
-  .faq details { background: var(--soft); border-radius: 16px; padding: 14px 16px; }
-  .faq summary { font-weight: 800; font-size: 15px; cursor: pointer; list-style: none; }
-  .faq summary::after { content: '＋'; float: right; color: var(--sub); }
-  .faq details[open] summary::after { content: '－'; }
-  .faq p { font-size: 14px; color: #555; line-height: 1.6; margin-top: 8px; }
-  .beta { margin-top: 26px; background: #FFF1F5; border-radius: 20px; padding: 18px; }
-  .beta b { font-size: 16px; display: block; }
-  .beta p { font-size: 13.5px; color: #6B5A60; margin: 5px 0 12px; line-height: 1.5; }
-  .beta a { display: inline-block; background: #fff; color: var(--pink); border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 14px; text-decoration: none; }
-  footer { margin-top: 36px; font-size: 12px; color: var(--sub); text-align: center; line-height: 1.8; }
+  /* 화면 세 장: 가로 스크롤 캐러셀 */
+  .shots { display: flex; gap: 12px; margin: 26px -22px 0; padding: 4px 22px 2px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .shots::-webkit-scrollbar { display: none; }
+  .shots figure { flex: 0 0 auto; width: 60vw; max-width: 220px; scroll-snap-align: center; }
+  .shots img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 16px 34px rgba(0,0,0,.10); }
+  .shots figcaption { margin-top: 8px; text-align: center; font-size: 12.5px; font-weight: 700; color: var(--sub); }
+  /* 기능 3줄 */
+  .points { margin-top: 22px; display: grid; gap: 8px; }
+  .points div { font-size: 15px; line-height: 1.5; font-weight: 600; padding: 12px 15px; background: var(--soft); border-radius: 14px; }
+  footer { margin-top: 28px; font-size: 12px; color: var(--sub); text-align: center; line-height: 1.8; }
   footer a { color: var(--sub); }
-  .share { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 22px calc(14px + env(safe-area-inset-bottom)); background: linear-gradient(to top, #fff 70%, rgba(255,255,255,0)); }
-  .share button { display: block; width: 100%; max-width: 436px; margin: 0 auto; height: 56px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 800; font-size: 16px; font-family: inherit; cursor: pointer; }
-  .toast { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); background: rgba(22,24,27,.92); color: #fff; font-size: 13.5px; padding: 11px 16px; border-radius: 12px; opacity: 0; transition: opacity .2s; pointer-events: none; }
-  .toast.on { opacity: 1; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header><img src="img/icon.png" alt=""><b>올해네컷</b></header>
 
-  <!-- 핵심 헤드라인 + 베타 CTA -->
-  <section style="padding-top: 26px">
-    <h1>1년 치 사진 속<br>가장 빛난 순간, 네컷으로</h1>
-    <p class="lead">앱이 1년 동안 찍은 사진을 훑어 하이라이트를 만들어 드려요. 고르지 않아도, 올해가 네컷으로.</p>
-    <div class="pills"><span>🔒 사진은 폰 밖으로 안 나가요</span><span>서버·로그인 없음</span></div>
-    <a class="cta pink" id="beta" href="https://play.google.com/apps/testing/com.hyosang.year4cuts" target="_blank" rel="noopener">베타 테스트 참여하기</a>
-    <a class="cta line" id="android" href="#">Google Play<small>곧 출시</small></a>
-    <a class="cta line" id="ios" href="#">App Store<small>곧 출시</small></a>
-  </section>
+  <h1>1년 치 사진 속<br>가장 빛난 순간, 네컷으로</h1>
+  <p class="lead">고르지 않아도, 올해가 네컷으로.</p>
+  <div class="pills"><span>🔒 사진은 폰 밖으로 안 나가요</span><span>서버·로그인 없음</span></div>
+  <a class="cta pink" id="beta" href="https://play.google.com/apps/testing/com.hyosang.year4cuts" target="_blank" rel="noopener">베타 테스트 참여하기</a>
+  <a class="cta line" id="android" href="#" hidden>Google Play<small>곧 출시</small></a>
+  <a class="cta line" id="ios" href="#" hidden>App Store<small>곧 출시</small></a>
 
-  <!-- 온보딩 ① 문제: 미정리 -->
-  <section>
-    <div class="eyebrow">이런 적 있죠?</div>
-    <h2>1년은 흘렀는데<br>사진은 갤러리에 그대로</h2>
-    <p class="lead">고르다 지쳐 결국 흘려보내고, 그렇게 1년이 지나가요.</p>
-    <div class="pile" id="pile"><div class="badge">📷 올해 사진 999+장 미정리</div></div>
-  </section>
+  <!-- 화면 세 장: 가로 스크롤( scroll-snap ) 캐러셀 -->
+  <div class="shots">
+    <figure><img src="img/home.webp" alt="올해네컷 홈 화면 — 봄·여름·가을·겨울로 골라진 네컷 카드" width="720" height="1280"><figcaption>네컷</figcaption></figure>
+    <figure><img src="img/months.webp" alt="올해네컷 열두 달 화면 — 1월부터 12월까지 한 장씩 고른 사진" width="720" height="1280"><figcaption>열두 달</figcaption></figure>
+    <figure><img src="img/share.webp" alt="올해네컷 공유 화면 — 모양·바탕·캡션 고르기" width="720" height="1280"><figcaption>공유</figcaption></figure>
+  </div>
 
-  <!-- 온보딩 ② 해결: 사계절 자동 네컷 -->
-  <section>
-    <div class="eyebrow">올해네컷이 대신 해요</div>
-    <h2>열면 바로,<br>나의 2026</h2>
-    <p class="lead">봄·여름·가을·겨울, 계절마다 가장 좋은 한 장. 스크린샷·문서 사진은 빼고, 웃는 얼굴·나들이 순간을 먼저 골라요. 마음에 안 들면 다시 뽑기 무제한.</p>
-    <img class="shot" src="img/home.webp" alt="올해네컷 홈 화면 — 봄·여름·가을·겨울로 골라진 네컷 카드" width="720" height="1280">
-  </section>
-
-  <!-- 온보딩 ③ 혜택: 공유 -->
-  <section>
-    <div class="eyebrow">그리고</div>
-    <h2>올해 하이라이트를<br>함께 나눠 봐요</h2>
-    <p class="lead">피드·스토리·단톡방에 맞는 크기로 만들어져 있어요. 바탕은 없음·밝은 회색·크리스마스 카드·버건디·눈 오는 밤·검정, 6가지.</p>
-    <img class="shot" src="img/share.webp" alt="올해네컷 공유 화면 — 모양·바탕·캡션 고르기" width="720" height="1280">
-  </section>
-
-  <!-- Pro: 열두 달·테마 결산 -->
-  <section>
-    <div class="eyebrow">더 담고 싶다면</div>
-    <h2>열두 달, 테마별 네컷도</h2>
-    <p class="lead">함께한 사람·다녀온 곳·맛있었던 것 네컷과 달마다 제목을 붙인 올해의 챕터. 로고 없는 고화질(2160px) 저장, 지난해들 보기까지.</p>
-    <img class="shot" src="img/months.webp" alt="올해네컷 열두 달 화면 — 1월부터 12월까지 한 장씩 고른 사진" width="720" height="1280">
-    <div class="price"><b>올해 결산권 ₩5,900 · 평생권 ₩19,900</b><span>둘 다 한 번 결제예요. 구독 없음.</span></div>
-  </section>
-
-  <!-- 이런 분께 추천 -->
-  <section>
-    <div class="eyebrow">이런 분께 추천해요</div>
-    <div class="for">
-      <div><em>🎊</em>연말마다 올해 결산을 올리고 싶은데 사진 고르다 지치는 분</div>
-      <div><em>📱</em>사진은 수천 장인데 한 장도 정리 못 한 분</div>
-      <div><em>👨‍👩‍👧</em>가족·친구와 올해를 한 장으로 남기고 싶은 분</div>
-    </div>
-  </section>
-
-  <!-- 반박 제거 FAQ -->
-  <section>
-    <div class="eyebrow">궁금한 것</div>
-    <div class="faq">
-      <details open><summary>제 사진이 어디로 올라가나요?</summary><p>아무 데도 안 올라가요. 분석은 전부 내 폰 안에서 이뤄지고, 서버도 로그인도 없어요.</p></details>
-      <details><summary>결제를 안 하면 못 써요?</summary><p>사계절 네컷을 만들고, 다시 뽑고, 저장하고 공유하는 건 무료예요. 광고도 없어요. 로고 없는 고화질 저장 같은 것들이 Pro예요.</p></details>
-      <details><summary>트립네컷과 어떻게 달라요?</summary><p>트립네컷은 여행 하나를 네컷으로 만들고, 올해네컷은 1년 전체를 계절·달·테마로 결산해요. 같은 개발자의 별개 앱이에요.</p></details>
-      <details><summary>사진이 많으면 오래 걸리지 않나요?</summary><p>처음 분석은 사진이 많으면 좀 걸려요. 끝나면 알려 드리고, 새 사진이 쌓이면 더 좋은 카드로 바꿀지 물어봐요.</p></details>
-    </div>
-  </section>
-
-  <div class="beta">
-    <b>정식 출시 전, 먼저 써 볼 분</b>
-    <p>Play 베타에 참여하면 올해네컷을 가장 먼저 쓸 수 있어요. 써 보고 솔직한 의견을 들려주세요.</p>
-    <a id="betaLink" href="https://play.google.com/apps/testing/com.hyosang.year4cuts" target="_blank" rel="noopener">베타 참여하기 →</a>
+  <!-- 기능 3줄 -->
+  <div class="points">
+    <div>사계절 네컷 — 계절마다 가장 좋은 한 장</div>
+    <div>열두 달·함께한 사람·다녀온 곳·맛있었던 것</div>
+    <div>마음에 안 들면 ↻ 다시 뽑기</div>
   </div>
 
   <footer>
-    회사 다니며 밤에 조금씩 만드는 사진 결산 앱<br>
     <a href="privacy.html">개인정보 처리방침</a> · <a href="terms.html">이용약관</a> · 문의 <a href="mailto:twincouplefamily@gmail.com">twincouplefamily@gmail.com</a>
   </footer>
 </div>
-
-<div class="share"><button id="shareBtn">친구에게 공유하기</button></div>
-<div class="toast" id="toast">주소를 복사했어요</div>
 
 <script>
   // 스토어·베타 주소는 출시 단계에 맞춰 여기만 바꾼다
@@ -151,29 +78,9 @@
     ios: '',           // App Store 출시 후
     beta: 'https://play.google.com/apps/testing/com.hyosang.year4cuts', // 베타 테스트 참여
   };
-  if (LINKS.beta) { document.getElementById('beta').href = LINKS.beta; document.getElementById('betaLink').href = LINKS.beta; }
-  if (LINKS.android) { const a = document.getElementById('android'); a.href = LINKS.android; a.querySelector('small').remove(); }
-  if (LINKS.ios) { const a = document.getElementById('ios'); a.href = LINKS.ios; a.querySelector('small').remove(); }
-
-  // 문제 장면: 올해 사진 더미 (스토어 데모 그림에서 자른 열두 달 타일)
-  const pile = document.getElementById('pile');
-  const tiles = ['month-07', 'month-02', 'month-11', 'month-04', 'month-09', 'month-01', 'month-06', 'month-12', 'month-03', 'month-08', 'month-05', 'month-10'];
-  tiles.forEach((n, i) => {
-    const el = document.createElement('img');
-    el.src = `img/${n}.png`;
-    el.alt = '';
-    el.style.left = `${(i * 37 + 8) % 86}%`;
-    el.style.top = `${(i * 53 + 6) % 62}%`;
-    el.style.transform = `rotate(${((i * 29) % 40) - 20}deg)`;
-    pile.insertBefore(el, pile.firstChild);
-  });
-
-  const toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1800); };
-  document.getElementById('shareBtn').addEventListener('click', async () => {
-    const data = { title: '올해네컷', text: '1년 치 사진, 올해는 네컷으로 결산 🗓️ #올해네컷', url: location.href };
-    if (navigator.share) { try { await navigator.share(data); } catch (_) {} }
-    else { try { await navigator.clipboard.writeText(location.href); toast('주소를 복사했어요'); } catch (_) { toast(location.href); } }
-  });
+  if (LINKS.beta) document.getElementById('beta').href = LINKS.beta;
+  if (LINKS.android) { const a = document.getElementById('android'); a.href = LINKS.android; a.hidden = false; a.querySelector('small').remove(); }
+  if (LINKS.ios) { const a = document.getElementById('ios'); a.href = LINKS.ios; a.hidden = false; a.querySelector('small').remove(); }
 </script>
 </body>
 </html>
